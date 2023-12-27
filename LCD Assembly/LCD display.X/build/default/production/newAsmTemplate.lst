@@ -1,0 +1,102 @@
+MPASM 5.87                NEWASMTEMPLATE.ASM   5-8-2023  10:13:19         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[205]: Found directive in column 1. (LIST)
+                      00001 LIST P=PIC18F458,F=INHX32,N=0,ST=OFF,R=HEX
+                      00002 #include <p18f458.inc>
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ; Build date : Jan 06 2020
+                      00005 ;  MPASM PIC18F458 processor include
+                      00006 ; 
+                      00007 ;  (c) Copyright 1999-2020 Microchip Technology, All rights reserved
+                      00008 ;==========================================================================
+                      00009 
+                      02768         LIST
+Warning[205]: Found directive in column 1. (ORG)
+                      00003 ORG 0H
+Warning[207]: Found label after column 1. (MYREG)
+  00000009            00004  MYREG EQU 0X9
+  00000F81            00005 LCD_DATA  EQU PORTB
+  00000F82            00006 LCD_CTRL  EQU PORTC
+Warning[207]: Found label after column 1. (RS)
+  00000000            00007  RS       EQU RC0
+Warning[207]: Found label after column 1. (RW)
+  00000001            00008  RW       EQU RC1
+Warning[207]: Found label after column 1. (EN)
+  00000002            00009  EN       EQU RC2
+000000 6A93           00010           CLRF TRISB
+000002 6A94           00011           CLRF TRISC
+000004 9482           00012           BCF  LCD_CTRL,EN
+000006 EC?? F???      00013           CALL LDELAY
+00000A 0E38           00014           MOVLW 0X38
+00000C EC?? F???      00015           CALL COMNWRT
+000010 EC?? F???      00016           CALL LDELAY
+000014 0E0E           00017           MOVLW 0X0E
+000016 EC?? F???      00018           CALL COMNWRT
+00001A EC?? F???      00019           CALL DELAY
+00001E 0E01           00020           MOVLW 0X01
+000020 EC?? F???      00021           CALL COMNWRT
+000024 EC?? F???      00022           CALL DELAY
+000028 0E06           00023           MOVLW 0X06
+00002A EC?? F???      00024           CALL COMNWRT
+00002E EC?? F???      00025           CALL DELAY
+000032 0E84           00026           MOVLW 0X84
+000034 EC?? F???      00027           CALL COMNWRT
+000038 EC?? F???      00028           CALL DELAY
+00003C 0E4E           00029           MOVLW A'N'
+00003E EC?? F???      00030           CALL DATAWRT
+000042 EC?? F???      00031           CALL DELAY
+000046 0E4F           00032           MOVLW A'O'
+000048 EC?? F???      00033           CALL DATAWRT
+                      00034           
+00004C 7082           00035 AGAIN     BTG LCD_CTRL ,0
+00004E D???           00036           BRA AGAIN
+                      00037           
+000050 6E81           00038 COMNWRT   MOVWF LCD_DATA
+000052 9082           00039           BCF  LCD_CTRL ,RS
+000054 9282           00040           BCF  LCD_CTRL ,RW
+000056 8482           00041           BSF  LCD_CTRL ,EN
+000058 EC?? F???      00042           CALL DELAY
+00005C 9482           00043           BCF  LCD_CTRL ,EN
+00005E 0012           00044           RETURN
+000060 6E81           00045 DATAWRT   MOVWF LCD_DATA
+000062 8082           00046           BSF  LCD_CTRL ,RS
+000064 9282           00047           BCF  LCD_CTRL ,RW
+000066 8482           00048           BSF  LCD_CTRL ,EN
+000068 EC?? F???      00049           CALL  DELAY
+00006C 9482           00050           BCF  LCD_CTRL ,EN
+00006E 0012           00051           RETURN
+                      00052           
+000070 0EFF           00053 LDELAY  MOVLW 0XFF
+000072 6E09           00054         MOVWF MYREG
+000074 0000           00055         NOP
+000076 0000           00056         NOP
+000078 0000           00057         NOP
+00007A 0609           00058 B1      DECF MYREG
+00007C E1??           00059         BNZ B1
+00007E 0012           00060         RETURN
+                      00061         
+000080 0EFF           00062 DELAY   MOVLW 0XFF
+000082 6E09           00063         MOVWF MYREG
+000084 0000           00064         NOP
+000086 0000           00065         NOP
+000088 0000           00066         NOP
+00008A 0609           00067 A1      DECF MYREG
+00008C E1??           00068         BNZ A1
+00008E 0012           00069         RETURN
+                      00070         
+                      00071         
+                      00072           
+                      00073           
+                      00074           END
+
+Errors   :     0
+Warnings :     6 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

@@ -1,0 +1,826 @@
+
+
+Microchip MPLAB XC8 Assembler V2.41 build 20230208172133 
+                                                                                               Thu Jun 29 18:47:01 2023
+
+Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1 
+     1                           	processor	16F877A
+     2                           	pagewidth 120
+     3                           	opt	flic
+     4                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     5                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1,noexec
+     6                           	psect	maintext,global,class=CODE,split=1,delta=2
+     7                           	psect	text1,local,class=CODE,merge=1,delta=2
+     8                           	psect	text2,local,class=CODE,merge=1,delta=2
+     9                           	psect	text3,local,class=CODE,merge=1,delta=2
+    10                           	psect	text4,local,class=CODE,merge=1,delta=2
+    11                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=2,noexec
+    12                           	dabs	1,0x7E,2
+    13     0000                     
+    14                           ; Generated 22/03/2023 GMT
+    15                           ; 
+    16                           ; Copyright © 2023, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    17                           ; All rights reserved.
+    18                           ; 
+    19                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    20                           ; 
+    21                           ; Redistribution and use in source and binary forms, with or without modification, are
+    22                           ; permitted provided that the following conditions are met:
+    23                           ; 
+    24                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    25                           ;        conditions and the following disclaimer.
+    26                           ; 
+    27                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    28                           ;        of conditions and the following disclaimer in the documentation and/or other
+    29                           ;        materials provided with the distribution. Publication is not required when
+    30                           ;        this file is used in an embedded application.
+    31                           ; 
+    32                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    33                           ;        software without specific prior written permission.
+    34                           ; 
+    35                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    36                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    37                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    38                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    39                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    40                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    41                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    42                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    43                           ; 
+    44                           ; 
+    45                           ; Code-generator required, PIC16F877A Definitions
+    46                           ; 
+    47                           ; SFR Addresses
+    48     0000                     	;# 
+    49     0001                     	;# 
+    50     0002                     	;# 
+    51     0003                     	;# 
+    52     0004                     	;# 
+    53     0005                     	;# 
+    54     0006                     	;# 
+    55     0007                     	;# 
+    56     0008                     	;# 
+    57     0009                     	;# 
+    58     000A                     	;# 
+    59     000B                     	;# 
+    60     000C                     	;# 
+    61     000D                     	;# 
+    62     000E                     	;# 
+    63     000E                     	;# 
+    64     000F                     	;# 
+    65     0010                     	;# 
+    66     0011                     	;# 
+    67     0012                     	;# 
+    68     0013                     	;# 
+    69     0014                     	;# 
+    70     0015                     	;# 
+    71     0015                     	;# 
+    72     0016                     	;# 
+    73     0017                     	;# 
+    74     0018                     	;# 
+    75     0019                     	;# 
+    76     001A                     	;# 
+    77     001B                     	;# 
+    78     001B                     	;# 
+    79     001C                     	;# 
+    80     001D                     	;# 
+    81     001E                     	;# 
+    82     001F                     	;# 
+    83     0081                     	;# 
+    84     0085                     	;# 
+    85     0086                     	;# 
+    86     0087                     	;# 
+    87     0088                     	;# 
+    88     0089                     	;# 
+    89     008C                     	;# 
+    90     008D                     	;# 
+    91     008E                     	;# 
+    92     0091                     	;# 
+    93     0092                     	;# 
+    94     0093                     	;# 
+    95     0094                     	;# 
+    96     0098                     	;# 
+    97     0099                     	;# 
+    98     009C                     	;# 
+    99     009D                     	;# 
+   100     009E                     	;# 
+   101     009F                     	;# 
+   102     010C                     	;# 
+   103     010D                     	;# 
+   104     010E                     	;# 
+   105     010F                     	;# 
+   106     018C                     	;# 
+   107     018D                     	;# 
+   108     0000                     	;# 
+   109     0001                     	;# 
+   110     0002                     	;# 
+   111     0003                     	;# 
+   112     0004                     	;# 
+   113     0005                     	;# 
+   114     0006                     	;# 
+   115     0007                     	;# 
+   116     0008                     	;# 
+   117     0009                     	;# 
+   118     000A                     	;# 
+   119     000B                     	;# 
+   120     000C                     	;# 
+   121     000D                     	;# 
+   122     000E                     	;# 
+   123     000E                     	;# 
+   124     000F                     	;# 
+   125     0010                     	;# 
+   126     0011                     	;# 
+   127     0012                     	;# 
+   128     0013                     	;# 
+   129     0014                     	;# 
+   130     0015                     	;# 
+   131     0015                     	;# 
+   132     0016                     	;# 
+   133     0017                     	;# 
+   134     0018                     	;# 
+   135     0019                     	;# 
+   136     001A                     	;# 
+   137     001B                     	;# 
+   138     001B                     	;# 
+   139     001C                     	;# 
+   140     001D                     	;# 
+   141     001E                     	;# 
+   142     001F                     	;# 
+   143     0081                     	;# 
+   144     0085                     	;# 
+   145     0086                     	;# 
+   146     0087                     	;# 
+   147     0088                     	;# 
+   148     0089                     	;# 
+   149     008C                     	;# 
+   150     008D                     	;# 
+   151     008E                     	;# 
+   152     0091                     	;# 
+   153     0092                     	;# 
+   154     0093                     	;# 
+   155     0094                     	;# 
+   156     0098                     	;# 
+   157     0099                     	;# 
+   158     009C                     	;# 
+   159     009D                     	;# 
+   160     009E                     	;# 
+   161     009F                     	;# 
+   162     010C                     	;# 
+   163     010D                     	;# 
+   164     010E                     	;# 
+   165     010F                     	;# 
+   166     018C                     	;# 
+   167     018D                     	;# 
+   168     001E                     _ADRESH	set	30
+   169     001F                     _ADCON0	set	31
+   170     0015                     _CCPR1L	set	21
+   171     00FA                     _GO_DONE	set	250
+   172     00BD                     _CCP1X	set	189
+   173     00BC                     _CCP1Y	set	188
+   174     0092                     _TMR2ON	set	146
+   175     0091                     _T2CKPS1	set	145
+   176     0090                     _T2CKPS0	set	144
+   177     00BA                     _CCP1M2	set	186
+   178     00BB                     _CCP1M3	set	187
+   179     009E                     _ADRESL	set	158
+   180     009F                     _ADCON1	set	159
+   181     0092                     _PR2	set	146
+   182     043A                     _TRISC2	set	1082
+   183                           
+   184                           	psect	cinit
+   185     07FC                     start_initialization:	
+   186                           ; #config settings
+   187                           
+   188     07FC                     __initialization:
+   189     07FC                     end_of_initialization:	
+   190                           ;End of C runtime variable initialization code
+   191                           
+   192     07FC                     __end_of__initialization:
+   193     07FC  0183               	clrf	3
+   194     07FD  120A  118A  2FA8   	ljmp	_main	;jump to C main() function
+   195                           
+   196                           	psect	cstackCOMMON
+   197     0070                     __pcstackCOMMON:
+   198     0070                     ?_PWM1_Init:
+   199     0070                     ??_PWM1_Init:	
+   200                           ; 1 bytes @ 0x0
+   201                           
+   202     0070                     ?_ADC_Init:	
+   203                           ; 1 bytes @ 0x0
+   204                           
+   205     0070                     ??_ADC_Init:	
+   206                           ; 1 bytes @ 0x0
+   207                           
+   208     0070                     ?_main:	
+   209                           ; 1 bytes @ 0x0
+   210                           
+   211     0070                     ?_ADC_Read:	
+   212                           ; 1 bytes @ 0x0
+   213                           
+   214                           
+   215                           ; 2 bytes @ 0x0
+   216     0070                     	ds	2
+   217     0072                     ??_ADC_Read:
+   218                           
+   219                           ; 1 bytes @ 0x2
+   220     0072                     	ds	1
+   221     0073                     ADC_Read@ANC:
+   222                           
+   223                           ; 1 bytes @ 0x3
+   224     0073                     	ds	1
+   225     0074                     ?_PWM1_Set_Duty:
+   226     0074                     PWM1_Set_Duty@DC:	
+   227                           ; 1 bytes @ 0x4
+   228                           
+   229                           
+   230                           ; 2 bytes @ 0x4
+   231     0074                     	ds	2
+   232     0076                     ??_PWM1_Set_Duty:
+   233                           
+   234                           ; 1 bytes @ 0x6
+   235     0076                     	ds	2
+   236     0078                     ??_main:
+   237                           
+   238                           ; 1 bytes @ 0x8
+   239     0078                     	ds	1
+   240                           
+   241                           	psect	maintext
+   242     07A8                     __pmaintext:	
+   243 ;;
+   244 ;;Main: autosize = 0, tempsize = 1, incstack = 0, save=0
+   245 ;;
+   246 ;; *************** function _main *****************
+   247 ;; Defined at:
+   248 ;;		line 17 in file "Led_Dimmer_ADC.c"
+   249 ;; Parameters:    Size  Location     Type
+   250 ;;		None
+   251 ;; Auto vars:     Size  Location     Type
+   252 ;;		None
+   253 ;; Return value:  Size  Location     Type
+   254 ;;                  1    wreg      void 
+   255 ;; Registers used:
+   256 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+   257 ;; Tracked objects:
+   258 ;;		On entry : B00/0
+   259 ;;		On exit  : 0/0
+   260 ;;		Unchanged: 0/0
+   261 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   262 ;;      Params:         0       0       0       0       0
+   263 ;;      Locals:         0       0       0       0       0
+   264 ;;      Temps:          1       0       0       0       0
+   265 ;;      Totals:         1       0       0       0       0
+   266 ;;Total ram usage:        1 bytes
+   267 ;; Hardware stack levels required when called: 1
+   268 ;; This function calls:
+   269 ;;		_ADC_Init
+   270 ;;		_ADC_Read
+   271 ;;		_PWM1_Init
+   272 ;;		_PWM1_Set_Duty
+   273 ;; This function is called by:
+   274 ;;		Startup code after reset
+   275 ;; This function uses a non-reentrant model
+   276 ;;
+   277                           
+   278     07A8                     _main:	
+   279                           ;psect for function _main
+   280                           
+   281     07A8                     l719:	
+   282                           ;incstack = 0
+   283                           ; Regs used in _main: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+   284                           
+   285                           
+   286                           ;Led_Dimmer_ADC.c: 18:     PWM1_Init();
+   287     07A8  120A  118A  2778  120A  118A  	fcall	_PWM1_Init
+   288                           
+   289                           ;Led_Dimmer_ADC.c: 19:     ADC_Init();
+   290     07AD  120A  118A  276F  120A  118A  	fcall	_ADC_Init
+   291     07B2                     l721:
+   292                           
+   293                           ;Led_Dimmer_ADC.c: 21:         PWM1_Set_Duty(ADC_Read(0));
+   294     07B2  3000               	movlw	0
+   295     07B3  120A  118A  27CC  120A  118A  	fcall	_ADC_Read
+   296     07B8  0871               	movf	?_ADC_Read+1,w
+   297     07B9  00F5               	movwf	PWM1_Set_Duty@DC+1
+   298     07BA  0870               	movf	?_ADC_Read,w
+   299     07BB  00F4               	movwf	PWM1_Set_Duty@DC
+   300     07BC  120A  118A  2787  120A  118A  	fcall	_PWM1_Set_Duty
+   301     07C1                     l723:
+   302                           
+   303                           ;Led_Dimmer_ADC.c: 22:         _delay((unsigned long)((1)*(4000000/4000.0)));
+   304     07C1  30C7               	movlw	199
+   305     07C2  00F8               	movwf	??_main
+   306     07C3                     u137:
+   307     07C3  2FC4               	nop2
+   308     07C4  0BF8               	decfsz	??_main,f
+   309     07C5  2FC3               	goto	u137
+   310     07C6  2FC7               	nop2
+   311     07C7  2FC8               	nop2
+   312     07C8  2FB2               	goto	l721
+   313     07C9  120A  118A  2800   	ljmp	start
+   314     07CC                     __end_of_main:
+   315                           
+   316                           	psect	text1
+   317     0787                     __ptext1:	
+   318 ;; *************** function _PWM1_Set_Duty *****************
+   319 ;; Defined at:
+   320 ;;		line 35 in file "Led_Dimmer_ADC.c"
+   321 ;; Parameters:    Size  Location     Type
+   322 ;;  DC              2    4[COMMON] unsigned int 
+   323 ;; Auto vars:     Size  Location     Type
+   324 ;;		None
+   325 ;; Return value:  Size  Location     Type
+   326 ;;                  1    wreg      void 
+   327 ;; Registers used:
+   328 ;;		wreg, status,2, status,0
+   329 ;; Tracked objects:
+   330 ;;		On entry : 0/0
+   331 ;;		On exit  : 0/0
+   332 ;;		Unchanged: 0/0
+   333 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   334 ;;      Params:         2       0       0       0       0
+   335 ;;      Locals:         0       0       0       0       0
+   336 ;;      Temps:          2       0       0       0       0
+   337 ;;      Totals:         4       0       0       0       0
+   338 ;;Total ram usage:        4 bytes
+   339 ;; Hardware stack levels used: 1
+   340 ;; This function calls:
+   341 ;;		Nothing
+   342 ;; This function is called by:
+   343 ;;		_main
+   344 ;; This function uses a non-reentrant model
+   345 ;;
+   346                           
+   347     0787                     _PWM1_Set_Duty:	
+   348                           ;psect for function _PWM1_Set_Duty
+   349                           
+   350     0787                     l713:	
+   351                           ;incstack = 0
+   352                           ; Regs used in _PWM1_Set_Duty: [wreg+status,2+status,0]
+   353                           
+   354                           
+   355                           ;Led_Dimmer_ADC.c: 36:     if(DC<1024){
+   356     0787  3004               	movlw	4
+   357     0788  0275               	subwf	PWM1_Set_Duty@DC+1,w
+   358     0789  3000               	movlw	0
+   359     078A  1903               	skipnz
+   360     078B  0274               	subwf	PWM1_Set_Duty@DC,w
+   361     078C  1803               	skipnc
+   362     078D  2F8F               	goto	u101
+   363     078E  2F90               	goto	u100
+   364     078F                     u101:
+   365     078F  2FA7               	goto	l55
+   366     0790                     u100:
+   367     0790                     l715:
+   368                           
+   369                           ;Led_Dimmer_ADC.c: 37:         CCP1Y=DC & 1;
+   370     0790  1874               	btfsc	PWM1_Set_Duty@DC,0
+   371     0791  2F93               	goto	u111
+   372     0792  2F97               	goto	u110
+   373     0793                     u111:
+   374     0793  1283               	bcf	3,5	;RP0=0, select bank0
+   375     0794  1303               	bcf	3,6	;RP1=0, select bank0
+   376     0795  1617               	bsf	23,4	;volatile
+   377     0796  2F9A               	goto	u124
+   378     0797                     u110:
+   379     0797  1283               	bcf	3,5	;RP0=0, select bank0
+   380     0798  1303               	bcf	3,6	;RP1=0, select bank0
+   381     0799  1217               	bcf	23,4	;volatile
+   382     079A                     u124:
+   383                           
+   384                           ;Led_Dimmer_ADC.c: 38:         CCP1X=DC & 2;
+   385     079A  1297               	bcf	23,5	;volatile
+   386     079B                     l717:
+   387                           
+   388                           ;Led_Dimmer_ADC.c: 39:         CCPR1L=DC>>2;
+   389     079B  0875               	movf	PWM1_Set_Duty@DC+1,w
+   390     079C  00F7               	movwf	??_PWM1_Set_Duty+1
+   391     079D  0874               	movf	PWM1_Set_Duty@DC,w
+   392     079E  00F6               	movwf	??_PWM1_Set_Duty
+   393     079F  1003               	clrc
+   394     07A0  0CF7               	rrf	??_PWM1_Set_Duty+1,f
+   395     07A1  0CF6               	rrf	??_PWM1_Set_Duty,f
+   396     07A2  1003               	clrc
+   397     07A3  0CF7               	rrf	??_PWM1_Set_Duty+1,f
+   398     07A4  0CF6               	rrf	??_PWM1_Set_Duty,f
+   399     07A5  0876               	movf	??_PWM1_Set_Duty,w
+   400     07A6  0095               	movwf	21	;volatile
+   401     07A7                     l55:
+   402     07A7  0008               	return
+   403     07A8                     __end_of_PWM1_Set_Duty:
+   404                           
+   405                           	psect	text2
+   406     0778                     __ptext2:	
+   407 ;; *************** function _PWM1_Init *****************
+   408 ;; Defined at:
+   409 ;;		line 26 in file "Led_Dimmer_ADC.c"
+   410 ;; Parameters:    Size  Location     Type
+   411 ;;		None
+   412 ;; Auto vars:     Size  Location     Type
+   413 ;;		None
+   414 ;; Return value:  Size  Location     Type
+   415 ;;                  1    wreg      void 
+   416 ;; Registers used:
+   417 ;;		wreg
+   418 ;; Tracked objects:
+   419 ;;		On entry : 0/0
+   420 ;;		On exit  : 0/0
+   421 ;;		Unchanged: 0/0
+   422 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   423 ;;      Params:         0       0       0       0       0
+   424 ;;      Locals:         0       0       0       0       0
+   425 ;;      Temps:          0       0       0       0       0
+   426 ;;      Totals:         0       0       0       0       0
+   427 ;;Total ram usage:        0 bytes
+   428 ;; Hardware stack levels used: 1
+   429 ;; This function calls:
+   430 ;;		Nothing
+   431 ;; This function is called by:
+   432 ;;		_main
+   433 ;; This function uses a non-reentrant model
+   434 ;;
+   435                           
+   436     0778                     _PWM1_Init:	
+   437                           ;psect for function _PWM1_Init
+   438                           
+   439     0778                     l657:	
+   440                           ;incstack = 0
+   441                           ; Regs used in _PWM1_Init: [wreg]
+   442                           
+   443                           
+   444                           ;Led_Dimmer_ADC.c: 27:     CCP1M3=1;
+   445     0778  1283               	bcf	3,5	;RP0=0, select bank0
+   446     0779  1303               	bcf	3,6	;RP1=0, select bank0
+   447     077A  1597               	bsf	23,3	;volatile
+   448                           
+   449                           ;Led_Dimmer_ADC.c: 28:     CCP1M2=1;
+   450     077B  1517               	bsf	23,2	;volatile
+   451                           
+   452                           ;Led_Dimmer_ADC.c: 29:     TRISC2=0;
+   453     077C  1683               	bsf	3,5	;RP0=1, select bank1
+   454     077D  1303               	bcf	3,6	;RP1=0, select bank1
+   455     077E  1107               	bcf	7,2	;volatile
+   456     077F                     l659:
+   457                           
+   458                           ;Led_Dimmer_ADC.c: 30:     PR2=250;
+   459     077F  30FA               	movlw	250
+   460     0780  0092               	movwf	18	;volatile
+   461     0781                     l661:
+   462                           
+   463                           ;Led_Dimmer_ADC.c: 31:     T2CKPS0=1;
+   464     0781  1283               	bcf	3,5	;RP0=0, select bank0
+   465     0782  1303               	bcf	3,6	;RP1=0, select bank0
+   466     0783  1412               	bsf	18,0	;volatile
+   467     0784                     l663:
+   468                           
+   469                           ;Led_Dimmer_ADC.c: 32:     T2CKPS1=0;
+   470     0784  1092               	bcf	18,1	;volatile
+   471     0785                     l665:
+   472                           
+   473                           ;Led_Dimmer_ADC.c: 33:     TMR2ON=1;
+   474     0785  1512               	bsf	18,2	;volatile
+   475     0786                     l51:
+   476     0786  0008               	return
+   477     0787                     __end_of_PWM1_Init:
+   478                           
+   479                           	psect	text3
+   480     07CC                     __ptext3:	
+   481 ;; *************** function _ADC_Read *****************
+   482 ;; Defined at:
+   483 ;;		line 47 in file "Led_Dimmer_ADC.c"
+   484 ;; Parameters:    Size  Location     Type
+   485 ;;  ANC             1    wreg     unsigned char 
+   486 ;; Auto vars:     Size  Location     Type
+   487 ;;  ANC             1    3[COMMON] unsigned char 
+   488 ;; Return value:  Size  Location     Type
+   489 ;;                  2    0[COMMON] unsigned int 
+   490 ;; Registers used:
+   491 ;;		wreg, status,2, status,0, btemp+1
+   492 ;; Tracked objects:
+   493 ;;		On entry : 0/0
+   494 ;;		On exit  : 0/0
+   495 ;;		Unchanged: 0/0
+   496 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   497 ;;      Params:         2       0       0       0       0
+   498 ;;      Locals:         1       0       0       0       0
+   499 ;;      Temps:          1       0       0       0       0
+   500 ;;      Totals:         4       0       0       0       0
+   501 ;;Total ram usage:        4 bytes
+   502 ;; Hardware stack levels used: 1
+   503 ;; This function calls:
+   504 ;;		Nothing
+   505 ;; This function is called by:
+   506 ;;		_main
+   507 ;; This function uses a non-reentrant model
+   508 ;;
+   509                           
+   510     07CC                     _ADC_Read:	
+   511                           ;psect for function _ADC_Read
+   512                           
+   513                           
+   514                           ;incstack = 0
+   515                           ; Regs used in _ADC_Read: [wreg+status,2+status,0+btemp+1]
+   516                           ;ADC_Read@ANC stored from wreg
+   517     07CC  00F3               	movwf	ADC_Read@ANC
+   518     07CD                     l697:
+   519                           
+   520                           ;Led_Dimmer_ADC.c: 48:     if(ANC<0 || ANC>7){
+   521     07CD  3008               	movlw	8
+   522     07CE  0273               	subwf	ADC_Read@ANC,w
+   523     07CF  1C03               	skipc
+   524     07D0  2FD2               	goto	u71
+   525     07D1  2FD3               	goto	u70
+   526     07D2                     u71:
+   527     07D2  2FD6               	goto	l703
+   528     07D3                     u70:
+   529     07D3                     l699:
+   530                           
+   531                           ;Led_Dimmer_ADC.c: 49:         return 0;
+   532     07D3  01F0               	clrf	?_ADC_Read
+   533     07D4  01F1               	clrf	?_ADC_Read+1
+   534     07D5  2FFB               	goto	l62
+   535     07D6                     l703:
+   536                           
+   537                           ;Led_Dimmer_ADC.c: 51:     ADCON0&= 0b11000101;
+   538     07D6  30C5               	movlw	197
+   539     07D7  00FF               	movwf	btemp+1
+   540     07D8  087F               	movf	btemp+1,w
+   541     07D9  1283               	bcf	3,5	;RP0=0, select bank0
+   542     07DA  1303               	bcf	3,6	;RP1=0, select bank0
+   543     07DB  059F               	andwf	31,f	;volatile
+   544                           
+   545                           ;Led_Dimmer_ADC.c: 52:     ADCON0 |= ANC <<3;
+   546     07DC  0873               	movf	ADC_Read@ANC,w	;volatile
+   547     07DD  00F2               	movwf	??_ADC_Read
+   548     07DE  3002               	movlw	2
+   549     07DF                     u85:
+   550     07DF  1003               	clrc
+   551     07E0  0DF2               	rlf	??_ADC_Read,f
+   552     07E1  3EFF               	addlw	-1
+   553     07E2  1D03               	skipz
+   554     07E3  2FDF               	goto	u85
+   555     07E4  1003               	clrc
+   556     07E5  0D72               	rlf	??_ADC_Read,w
+   557     07E6  00FF               	movwf	btemp+1
+   558     07E7  087F               	movf	btemp+1,w
+   559     07E8  049F               	iorwf	31,f	;volatile
+   560     07E9                     l705:
+   561                           
+   562                           ;Led_Dimmer_ADC.c: 53:     _delay((unsigned long)((30)*(4000000/4000000.0)));
+   563     07E9  3009               	movlw	9
+   564     07EA  00F2               	movwf	??_ADC_Read
+   565     07EB                     u147:
+   566     07EB  0BF2               	decfsz	??_ADC_Read,f
+   567     07EC  2FEB               	goto	u147
+   568     07ED  2FEE               	nop2
+   569     07EE                     l707:
+   570                           
+   571                           ;Led_Dimmer_ADC.c: 54:     GO_DONE=1;
+   572     07EE  1283               	bcf	3,5	;RP0=0, select bank0
+   573     07EF  1303               	bcf	3,6	;RP1=0, select bank0
+   574     07F0  151F               	bsf	31,2	;volatile
+   575     07F1                     l63:	
+   576                           ;Led_Dimmer_ADC.c: 55:     while(GO_DONE);
+   577                           
+   578     07F1  191F               	btfsc	31,2	;volatile
+   579     07F2  2FF4               	goto	u91
+   580     07F3  2FF5               	goto	u90
+   581     07F4                     u91:
+   582     07F4  2FF1               	goto	l63
+   583     07F5                     u90:
+   584     07F5                     l709:
+   585                           
+   586                           ;Led_Dimmer_ADC.c: 56:     return ((ADRESH<<8)+ADRESL);
+   587     07F5  081E               	movf	30,w	;volatile
+   588     07F6  00F1               	movwf	?_ADC_Read+1
+   589     07F7  1683               	bsf	3,5	;RP0=1, select bank1
+   590     07F8  1303               	bcf	3,6	;RP1=0, select bank1
+   591     07F9  081E               	movf	30,w	;volatile
+   592     07FA  00F0               	movwf	?_ADC_Read
+   593     07FB                     l62:
+   594     07FB  0008               	return
+   595     07FC                     __end_of_ADC_Read:
+   596                           
+   597                           	psect	text4
+   598     076F                     __ptext4:	
+   599 ;; *************** function _ADC_Init *****************
+   600 ;; Defined at:
+   601 ;;		line 42 in file "Led_Dimmer_ADC.c"
+   602 ;; Parameters:    Size  Location     Type
+   603 ;;		None
+   604 ;; Auto vars:     Size  Location     Type
+   605 ;;		None
+   606 ;; Return value:  Size  Location     Type
+   607 ;;                  1    wreg      void 
+   608 ;; Registers used:
+   609 ;;		wreg
+   610 ;; Tracked objects:
+   611 ;;		On entry : 0/0
+   612 ;;		On exit  : 0/0
+   613 ;;		Unchanged: 0/0
+   614 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   615 ;;      Params:         0       0       0       0       0
+   616 ;;      Locals:         0       0       0       0       0
+   617 ;;      Temps:          0       0       0       0       0
+   618 ;;      Totals:         0       0       0       0       0
+   619 ;;Total ram usage:        0 bytes
+   620 ;; Hardware stack levels used: 1
+   621 ;; This function calls:
+   622 ;;		Nothing
+   623 ;; This function is called by:
+   624 ;;		_main
+   625 ;; This function uses a non-reentrant model
+   626 ;;
+   627                           
+   628     076F                     _ADC_Init:	
+   629                           ;psect for function _ADC_Init
+   630                           
+   631     076F                     l667:	
+   632                           ;incstack = 0
+   633                           ; Regs used in _ADC_Init: [wreg]
+   634                           
+   635                           
+   636                           ;Led_Dimmer_ADC.c: 43:     ADCON0=0b01000001;
+   637     076F  3041               	movlw	65
+   638     0770  1283               	bcf	3,5	;RP0=0, select bank0
+   639     0771  1303               	bcf	3,6	;RP1=0, select bank0
+   640     0772  009F               	movwf	31	;volatile
+   641                           
+   642                           ;Led_Dimmer_ADC.c: 44:     ADCON1=0b10000000;
+   643     0773  3080               	movlw	128
+   644     0774  1683               	bsf	3,5	;RP0=1, select bank1
+   645     0775  1303               	bcf	3,6	;RP1=0, select bank1
+   646     0776  009F               	movwf	31	;volatile
+   647     0777                     l58:
+   648     0777  0008               	return
+   649     0778                     __end_of_ADC_Init:
+   650     007E                     btemp	set	126	;btemp
+   651     007E                     wtemp0	set	126
+   652                           
+   653                           	psect	config
+   654                           
+   655                           ;Config register CONFIG @ 0x2007
+   656                           ;	Oscillator Selection bits
+   657                           ;	FOSC = XT, XT oscillator
+   658                           ;	Watchdog Timer Enable bit
+   659                           ;	WDTE = OFF, WDT disabled
+   660                           ;	Power-up Timer Enable bit
+   661                           ;	PWRTE = ON, PWRT enabled
+   662                           ;	Brown-out Reset Enable bit
+   663                           ;	BOREN = ON, BOR enabled
+   664                           ;	Low-Voltage (Single-Supply) In-Circuit Serial Programming Enable bit
+   665                           ;	LVP = OFF, RB3 is digital I/O, HV on MCLR must be used for programming
+   666                           ;	Data EEPROM Memory Code Protection bit
+   667                           ;	CPD = OFF, Data EEPROM code protection off
+   668                           ;	Flash Program Memory Write Enable bits
+   669                           ;	WRT = OFF, Write protection off; all program memory may be written to by EECON control
+   670                           ;	In-Circuit Debugger Mode bit
+   671                           ;	DEBUG = 0x1, unprogrammed default
+   672                           ;	Flash Program Memory Code Protection bit
+   673                           ;	CP = OFF, Code protection off
+   674     2007                     	org	8199
+   675     2007  3F71               	dw	16241
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      9       9
+    BANK0            80      0       0
+    BANK1            80      0       0
+    BANK3            96      0       0
+    BANK2            96      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    _main->_PWM1_Set_Duty
+    _PWM1_Set_Duty->_ADC_Read
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 1     1      0     186
+                                              8 COMMON     1     1      0
+                           _ADC_Init
+                           _ADC_Read
+                          _PWM1_Init
+                      _PWM1_Set_Duty
+ ---------------------------------------------------------------------------------
+ (1) _PWM1_Set_Duty                                        4     2      2     142
+                                              4 COMMON     4     2      2
+                           _ADC_Read (ARG)
+ ---------------------------------------------------------------------------------
+ (1) _PWM1_Init                                            0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _ADC_Read                                             4     2      2      44
+                                              0 COMMON     4     2      2
+ ---------------------------------------------------------------------------------
+ (1) _ADC_Init                                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _ADC_Init
+   _ADC_Read
+   _PWM1_Init
+   _PWM1_Set_Duty
+     _ADC_Read (ARG)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMMON            E      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMMON               E      9       9       1       64.3%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+STACK                0      0       0       2        0.0%
+ABS                  0      0       0       3        0.0%
+BITBANK0            50      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+BANK0               50      0       0       5        0.0%
+BITSFR2              0      0       0       5        0.0%
+SFR2                 0      0       0       5        0.0%
+BITBANK1            50      0       0       6        0.0%
+BANK1               50      0       0       7        0.0%
+BITBANK3            60      0       0       8        0.0%
+BANK3               60      0       0       9        0.0%
+BITBANK2            60      0       0      10        0.0%
+BANK2               60      0       0      11        0.0%
+DATA                 0      0       0      12        0.0%
+
+
+Microchip Technology PIC Macro Assembler V2.41 build 20230208172133 
+Symbol Table                                                                                   Thu Jun 29 18:47:01 2023
+
+                     l51 0786                       l62 07FB                       l63 07F1  
+                     l55 07A7                       l58 0777                       u70 07D3  
+                     u71 07D2                       u90 07F5                       u91 07F4  
+                     u85 07DF                      l703 07D6                      l705 07E9  
+                    l713 0787                      l721 07B2                      l707 07EE  
+                    l715 0790                      l723 07C1                      l709 07F5  
+                    l661 0781                      l717 079B                      l663 0784  
+                    l719 07A8                      l665 0785                      l657 0778  
+                    l667 076F                      l659 077F                      l697 07CD  
+                    l699 07D3                      u100 0790                      u101 078F  
+                    u110 0797                      u111 0793                      u124 079A  
+                    u137 07C3                      u147 07EB                      _PR2 0092  
+                   _main 07A8                     btemp 007E         __end_of_ADC_Init 0778  
+       __end_of_ADC_Read 07FC                     start 0000                    ?_main 0070  
+                  _CCP1X 00BD                    _CCP1Y 00BC                    status 0003  
+                  wtemp0 007E          __initialization 07FC             __end_of_main 07CC  
+                 ??_main 0078                   _ADCON0 001F                   _ADCON1 009F  
+                 _CCP1M2 00BA                   _CCP1M3 00BB                   _ADRESH 001E  
+                 _ADRESL 009E                   _CCPR1L 0015                   _TMR2ON 0092  
+                 _TRISC2 043A        __end_of_PWM1_Init 0787                ?_ADC_Init 0070  
+              ?_ADC_Read 0070  __end_of__initialization 07FC           __pcstackCOMMON 0070  
+  __end_of_PWM1_Set_Duty 07A8               ??_ADC_Init 0070               ??_ADC_Read 0072  
+             __pmaintext 07A8                  _T2CKPS0 0090                  _T2CKPS1 0091  
+                _GO_DONE 00FA                  __ptext1 0787                  __ptext2 0778  
+                __ptext3 07CC                  __ptext4 076F     end_of_initialization 07FC  
+              _PWM1_Init 0778               ?_PWM1_Init 0070      start_initialization 07FC  
+              ___latbits 0002              ??_PWM1_Init 0070                 _ADC_Init 076F  
+               _ADC_Read 07CC              ADC_Read@ANC 0073            _PWM1_Set_Duty 0787  
+         ?_PWM1_Set_Duty 0074          ??_PWM1_Set_Duty 0076          PWM1_Set_Duty@DC 0074  
